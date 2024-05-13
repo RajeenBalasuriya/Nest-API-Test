@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
 
 @Module({
   imports: [
@@ -12,9 +14,10 @@ import { AppService } from './app.service';
       username: 'postgres',
       password: 'rajeen123',
       database: 'simple-crm_db',
-      entities: ['dist/**/*.entity{.ts,.js}'],
+      entities: [User],
       synchronize: true,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
